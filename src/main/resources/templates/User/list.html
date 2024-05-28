@@ -8,10 +8,11 @@
     <th:block th:replace="~{layout::custom-css}"></th:block>
     <title>UserList</title>
 </head>
+<th:block th:replace="~{layout::header}"></th:block>
 <body>
-<h1 class="mb-4">UserList</h1>
-<a th:href="'/Users/new'" class="btn btn-primary btn-sm">Create</a>
-<div class="table-responsive-sm">
+<div class="table-responsive-sm container">
+    <h1 class="mb-4">UserList</h1>
+    <a th:href="'/Users/new'" class="btn btn-primary btn-sm">Create</a>
     <table class="table">
         <thead>
         <th>
@@ -48,6 +49,6 @@
 
         </tbody>
     </table>
+    <a th:href="'/'" class="btn btn-primary btn-sm">Back to Home</a>
 </div>
-<a th:href="'/'" class="btn btn-primary btn-sm">Back to list</a>
 </body>

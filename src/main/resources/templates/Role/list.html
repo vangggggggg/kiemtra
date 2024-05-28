@@ -8,10 +8,11 @@
     <th:block th:replace="~{layout::custom-css}"></th:block>
     <title>RoleList</title>
 </head>
+<th:block th:replace="~{layout::header}"></th:block>
 <body>
-<h1 class="mb-4">RoleList</h1>
-<a th:href="'/Roles/new'" class="btn btn-primary btn-sm">Create</a>
-<div class="table-responsive-sm">
+<div class="table-responsive-sm container">
+    <h1 class="mb-4">RoleList</h1>
+    <a th:href="'/Roles/new'" class="btn btn-primary btn-sm">Create</a>
     <table class="table">
         <thead>
             <th>
@@ -38,6 +39,6 @@
         </tr>
         </tbody>
     </table>
+    <a th:href="'/'" class="btn btn-primary btn-sm">Back to Home</a>
 </div>
-<a th:href="'/'" class="btn btn-primary btn-sm">Back to list</a>
 </body>
