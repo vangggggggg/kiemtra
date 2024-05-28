@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <th:block th:replace="~{layout::link-css}"></th:block>
+    <th:block th:replace="~{layout::custom-css}"></th:block>
+    <title>Add User</title>
 </head>
 <body>
-$END$
+<th:block th:replace="~{layout::header}"></th:block>
+<div class="container">
+    <h1>Add User</h1>
+    <form action="#" th:action="'/Users/create'" th:object="${User}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label">UserName:</label><span
+                class="text-danger">*</span>
+            <input class="form-control" type="text" placeholder="Enter UserName"
+                   th:field="*{username}" autofocus>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">FirstName:</label><span
+                class="text-danger">*</span>
+            <input class="form-control" type="text" placeholder="Enter FirstName"
+                   th:field="*{firstName}" autofocus>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">LastName:</label><span
+                class="text-danger">*</span>
+            <input class="form-control" type="text" placeholder="Enter LastName"
+                   th:field="*{lastName}" autofocus>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">Email:</label><span
+                class="text-danger">*</span>
+            <input class="form-control" type="text" placeholder="Enter Email"
+                   th:field="*{email}" autofocus>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">Password:</label><span
+                class="text-danger">*</span>
+            <input class="form-control" type="password" placeholder="Enter Password"
+                   th:field="*{password}" autofocus>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" >Role:</label><span
+                class="text-danger">*</span>
+            <select class="form-control" th:field="*{role}">
+                <option value="">-- Select Roles --</option>
+                <option th:each="roles : ${Roles}"
+                        th:value="${roles.role_id}"
+                        th:text="${roles.role_name}"
+                        ></option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </form>
+    <br>
+    <a th:href="@{/Users}">Back to List</a>
+</div>
+<th:block th:replace="~{layout::footer}"></th:block>
 </body>
 </html>

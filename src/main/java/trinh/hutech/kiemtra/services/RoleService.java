@@ -1,25 +1,28 @@
 package trinh.hutech.kiemtra.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Roledetails.RolenameNotFoundException;
 import org.springframework.stereotype.Service;
 import trinh.hutech.kiemtra.entities.Role;
-import trinh.hutech.kiemtra.entities.Role;
+import trinh.hutech.kiemtra.entities.User;
 import trinh.hutech.kiemtra.repositories.IRoleRepository;
-import trinh.hutech.kiemtra.repositories.IRoleRepository;
+import trinh.hutech.kiemtra.repositories.IUserRepository;
+import trinh.hutech.kiemtra.requestentities.RequestRole;
 
 
 import java.util.List;
 
 @Service
-public class RoleServices  {
+public class RoleService {
     @Autowired
     private IRoleRepository roleRepository;
-    
-    public Role CreateRole(Role roleCreate){
+
+    @Autowired
+    private IUserRepository userRepository;
+
+    public Role CreateRole(RequestRole requestRole){
         try {
             Role Role = new Role();
-            Role.setRole_name(roleCreate.getRole_name());
+            Role.setRole_name(requestRole.getName());
             roleRepository.save(Role);
             return Role;
         }catch (Exception e){
@@ -36,15 +39,25 @@ public class RoleServices  {
         );
     }
 
-    public Role updateRole(String id, Role requestUpdateRole){
+    public Role updateRole(Role role){
         try {
-            Role Role = getRoleById(id);
-            Role.setRole_name(requestUpdateRole.getRole_name());
+            Role Role = getRoleById(role.getRole_id());
+            Role.setRole_name(role.getRole_name());
             roleRepository.save(Role);
             return roleRepository.save(Role);
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }
     }
-
+    public Role deleteRole(Role Role) {
+        try {
+            roleRepository.delete(Role);
+            return Role;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public long countByRoleID(String roleName) {
+        return roleRepository.countByRoleID(roleName);
+    }
 }
